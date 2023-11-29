@@ -8,7 +8,7 @@ calculator
 1. Install Python
 2. execute pythong main.py
 
-## Note
+##  Note
 ### 2023-11-29
 1.download Visual Studio Code
 2.create repository in github
