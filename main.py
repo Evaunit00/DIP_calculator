@@ -1,97 +1,242 @@
-from tkinter import*
+import tkinter as tk
+class MyCalculator:
+    
+    title="Calculator Pro X +++"
+    
+    def __init__(self):
 
-me=Tk()
-me.geometry("354x460")
-me.title("CALCULATOR")
-melabel = Label(me,text="CALCULATOR",bg='White',font=("Times",30,'bold'))
-melabel.pack(side=TOP)
-me.config(background='Dark gray')
+        self.root = tk.Tk()
+        self.root.geometry("470x650")
+        #self.root.resizable(0, 0)
+        self.root.option_add("*Font", "ComicSansMS 25")
+        self.root.title(self.title)
 
-textin=StringVar()
-operator=""
+        self.label_text =tk.StringVar()
+        self.label = tk.Label(self.root, text="Calculator Pro X +++", font=('Comic Sans MS', 30))
+        self.label.grid(row=0, column=0, columnspan=4, sticky="NEWS", padx=20, pady=(20, 10), ipadx=20, ipady=10)
+        self.label = tk.Label(self.root, textvariable=self.label_text, font=('Comic Sans MS', 30),bg="yellow")
+        self.label.grid(row=1, columnspan=4, padx=20, pady=(0, 10), ipadx=20, ipady=10)
+        
+        self.buttonCE = tk.Button(self.root, text="CE", width=3, height=1)
+        self.buttonCE.grid(row=2, column=0)
+        self.buttonCE.bind("<Button-1>", self.CE)
 
-def clickbut(number):   #lambda:clickbut(1)
-     global operator
-     operator=operator+str(number)
-     textin.set(operator)
+        self.buttonParen = tk.Button(self.root, text="()", width=3, height=1)
+        self.buttonParen.grid(row=2, column=1)
+        self.buttonParen.bind("<Button-1>", self.Paren)
+        
+        self.buttonPerc = tk.Button(self.root, text="%", width=3, height=1)
+        self.buttonPerc.grid(row=2, column=2)
+        self.buttonPerc.bind("<Button-1>", self.Perc)
 
-def equlbut():
-     global operator
-     add=str(eval(operator))
-     textin.set(add)
-     operator=''
-def equlbut():
-     global operator
-     sub=str(eval(operator))
-     textin.set(sub)
-     operator=''     
-def equlbut():
-     global operator
-     mul=str(eval(operator))
-     textin.set(mul)
-     operator=''
-def equlbut():
-     global operator
-     div=str(eval(operator))
-     textin.set(div)
-     operator=''    
+        self.buttondivide = tk.Button(self.root, text="/", width=3, height=1)
+        self.buttondivide.grid(row=2, column=3)
+        self.buttondivide.bind("<Button-1>", self.divide)
 
-def clrbut():
-     textin.set('')
+        self.buttonmultiply = tk.Button(self.root, text="x", width=3, height=1)
+        self.buttonmultiply.grid(row=3, column=3)
+        self.buttonmultiply.bind("<Button-1>", self.multiply)
+        
+        self.buttonsubtract = tk.Button(self.root, text="-", width=3, height=1)
+        self.buttonsubtract.grid(row=4, column=3)
+        self.buttonsubtract.bind("<Button-1>", self.subtract)
 
-     
-metext=Entry(me,font=("Courier New",12,'bold'),textvar=textin,width=25,bd=5,bg='powder blue')
-metext.pack()
+        self.buttonadd = tk.Button(self.root, text="+", width=3, height=1)
+        self.buttonadd.grid(row=5, column=3)
+        self.buttonadd.bind("<Button-1>", self.add)
 
-but1=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(1),text="1",font=("Courier New",16,'bold'))
-but1.place(x=10,y=100)
+        self.button7 = tk.Button(self.root, text="7", width=3, height=1)
+        self.button7.grid(row=3, column=0)
+        self.button7.bind("<Button-1>", self.seven)
 
-but2=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(2),text="2",font=("Courier New",16,'bold'))
-but2.place(x=10,y=170)
+        self.button8 = tk.Button(self.root, text="8", width=3, height=1)
+        self.button8.grid(row=3, column=1)
+        self.button8.bind("<Button-1>", self.eight)
+        
+        self.button9 = tk.Button(self.root, text="9", width=3, height=1)
+        self.button9.grid(row=3, column=2)
+        self.button9.bind("<Button-1>", self.nine)
 
-but3=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(3),text="3",font=("Courier New",16,'bold'))
-but3.place(x=10,y=240)
+        self.button4 = tk.Button(self.root, text="4", width=3, height=1)
+        self.button4.grid(row=4, column=0)
+        self.button4.bind("<Button-1>", self.four)
 
-but4=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(4),text="4",font=("Courier New",16,'bold'))
-but4.place(x=75,y=100)
+        self.button5 = tk.Button(self.root, text="5", width=3, height=1)
+        self.button5.grid(row=4, column=1)
+        self.button5.bind("<Button-1>", self.five)
 
-but5=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(5),text="5",font=("Courier New",16,'bold'))
-but5.place(x=75,y=170)
+        self.button6 = tk.Button(self.root, text="6", width=3, height=1)
+        self.button6.grid(row=4, column=2)
+        self.button6.bind("<Button-1>", self.six)
 
-but6=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(6),text="6",font=("Courier New",16,'bold'))
-but6.place(x=75,y=240)
+        self.button1 = tk.Button(self.root, text="1", width=3, height=1)
+        self.button1.grid(row=5, column=0)
+        self.button1.bind("<Button-1>", self.one)
 
-but7=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(7),text="7",font=("Courier New",16,'bold'))
-but7.place(x=140,y=100)
+        self.button2 = tk.Button(self.root, text="2", width=3, height=1)
+        self.button2.grid(row=5, column=1)
+        self.button2.bind("<Button-1>", self.two)
 
-but8=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(8),text="8",font=("Courier New",16,'bold'))
-but8.place(x=140,y=170)
+        self.button3 = tk.Button(self.root, text="3", width=3, height=1)
+        self.button3.grid(row=5, column=2)
+        self.button3.bind("<Button-1>", self.three)
 
-but9=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(9),text="9",font=("Courier New",16,'bold'))
-but9.place(x=140,y=240)
+        self.buttonposinega = tk.Button(self.root, text="+/-", width=3, height=1)
+        self.buttonposinega.grid(row=6, column=0)
+        self.buttonposinega.bind("<Button-1>", self.posinega)
 
-but0=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(0),text="0",font=("Courier New",16,'bold'))
-but0.place(x=10,y=310)
+        self.button0 = tk.Button(self.root, text="0", width=3, height=1)
+        self.button0.grid(row=6, column=1)
+        self.button0.bind("<Button-1>", self.zero)
 
-butdot=Button(me,padx=47,pady=14,bd=4,bg='white',command=lambda:clickbut("."),text=".",font=("Courier New",16,'bold'))
-butdot.place(x=75,y=310)
+        self.buttondot = tk.Button(self.root, text=".", width=3, height=1)
+        self.buttondot.grid(row=6, column=2)
+        self.buttondot.bind("<Button-1>", self.dot)
 
-butpl=Button(me,padx=14,pady=14,bd=4,bg='white',text="+",command=lambda:clickbut("+"),font=("Courier New",16,'bold'))
-butpl.place(x=205,y=100)
+        self.buttonequal = tk.Button(self.root, text="=", width=3, height=1)
+        self.buttonequal.grid(row=6, column=3)
+        self.buttonequal.bind("<Button-1>", self.equal)
 
-butsub=Button(me,padx=14,pady=14,bd=4,bg='white',text="-",command=lambda:clickbut("-"),font=("Courier New",16,'bold'))
-butsub.place(x=205,y=170)
 
-butml=Button(me,padx=14,pady=14,bd=4,bg='white',text="*",command=lambda:clickbut("*"),font=("Courier New",16,'bold'))
-butml.place(x=205,y=240)
+        self.root.mainloop()
+    def CE(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("")
+        self.label.grid(row=1, colum=0)
 
-butdiv=Button(me,padx=14,pady=14,bd=4,bg='white',text="/",command=lambda:clickbut("/"),font=("Courier New",16,'bold'))
-butdiv.place(x=205,y=310)
+    def Paren(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("()")
+        self.label.grid(row=1, colum=0)
 
-butclear=Button(me,padx=14,pady=119,bd=4,bg='white',text="CE",command=clrbut,font=("Courier New",16,'bold'))
-butclear.place(x=270,y=100)
+    def Perc(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("%")
+        self.label.grid(row=1, colum=0)
 
-butequal=Button(me,padx=151,pady=14,bd=4,bg='white',command=equlbut,text="=",font=("Courier New",16,'bold'))
-butequal.place(x=10,y=380)
-me.mainloop()
+    def divide(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("/")
+        self.label.grid(row=1, colum=0)
 
+    def multiply(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("x")
+        self.label.grid(row=1, colum=0)
+    
+    def subtract(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("-")
+        self.label.grid(row=1, colum=0)
+
+    def add(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("+")
+        self.label.grid(row=1, colum=0)
+
+    def seven(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("7")
+        self.label.grid(row=1, colum=0)
+
+    def eight(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("8")
+        self.label.grid(row=1, colum=0)
+        
+    def nine(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("9")
+        self.label.grid(row=1, colum=0)
+
+    def four(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("4")
+        self.label.grid(row=1, colum=0)
+
+    def five(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("5")
+        self.label.grid(row=1, colum=0)
+
+    def six(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("6")
+        self.label.grid(row=1, colum=0)
+        
+    def one(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("1")
+        self.label.grid(row=1, colum=0)
+
+    def two(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("2")
+        self.label.grid(row=1, colum=0)
+
+    def three(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("3")
+        self.label.grid(row=1, colum=0)
+
+    def posinega(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("+/-")
+        self.label.grid(row=1, colum=0)
+
+    def zero(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("0")
+        self.label.grid(row=1, colum=0)
+
+    def dot(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set(".")
+        self.label.grid(row=1, colum=0)
+
+    def equal(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("=")
+        self.label.grid(row=1, colum=0)
+        
+MyCalculator()
