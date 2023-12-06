@@ -1,97 +1,91 @@
-from tkinter import*
+import tkinter as tk
+class MyCalculator:
+    
+    title="Calculator Pro X +++"
+    
+    def __init__(self):
 
-me=Tk()
-me.geometry("354x460")
-me.title("CALCULATOR")
-melabel = Label(me,text="CALCULATOR",bg='White',font=("Times",30,'bold'))
-melabel.pack(side=TOP)
-me.config(background='Dark gray')
+        self.root = tk.Tk()
+        self.root.geometry("470x650")
+        self.root.resizable(0, 0)
+        self.root.option_add("*Font", "ComicSansMS 25")
+        self.root.title(self.title)
 
-textin=StringVar()
-operator=""
+        self.label_text =tk.StringVar()
+        self.label = tk.Label(self.root, text="Calculator Pro X +++", font=('Comic Sans MS', 30))
+        self.label.grid(row=0, column=0, columnspan=4, sticky="NEWS", padx=20, pady=(20, 10), ipadx=20, ipady=10)
+        self.label = tk.Label(self.root, textvariable=self.label_text, font=('Comic Sans MS', 30),bg="yellow")
+        self.label.grid(row=1, columnspan=4, padx=20, pady=(0, 10), ipadx=20, ipady=10)
+        
 
-def clickbut(number):   #lambda:clickbut(1)
-     global operator
-     operator=operator+str(number)
-     textin.set(operator)
+        self.button_trig = tk.Button(self.root, text="trigger change title to \"Test\"", height=4, )
+        self.button_my_cal = tk.Button(self.root, text="trigger change title to \"My Calcularor\"" , height=4, )
 
-def equlbut():
-     global operator
-     add=str(eval(operator))
-     textin.set(add)
-     operator=''
-def equlbut():
-     global operator
-     sub=str(eval(operator))
-     textin.set(sub)
-     operator=''     
-def equlbut():
-     global operator
-     mul=str(eval(operator))
-     textin.set(mul)
-     operator=''
-def equlbut():
-     global operator
-     div=str(eval(operator))
-     textin.set(div)
-     operator=''    
+        self.button_trig.place(x=120,y=50)
+        self.button_trig.bind("<Button-1>", self.trigger_event)
 
-def clrbut():
-     textin.set('')
+        self.button_my_cal.place(x=120,y=100)
+        self.button_my_cal.bind("<Button-1>", self.trigger_my_cal)
+    
+        self.button = tk.Button(self.root, text="CE", width=3, height=1)
+        self.button.grid(row=2, column=0)
+        self.button = tk.Button(self.root, text="()", width=3, height=1)
+        self.button.grid(row=2, column=1)
+        self.button = tk.Button(self.root, text="%", width=3, height=1)
+        self.button.grid(row=2, column=2)
+        self.button = tk.Button(self.root, text="/", width=3, height=1)
+        self.button.grid(row=2, column=3)
+        self.button = tk.Button(self.root, text="x", width=3, height=1)
+        self.button.grid(row=3, column=3)
+        self.button = tk.Button(self.root, text="-", width=3, height=1)
+        self.button.grid(row=4, column=3)
+        self.button = tk.Button(self.root, text="+", width=3, height=1)
+        self.button.grid(row=5, column=3)
+        self.button = tk.Button(self.root, text="7", width=3, height=1)
+        self.button.grid(row=3, column=0)
+        self.button = tk.Button(self.root, text="8", width=3, height=1)
+        self.button.grid(row=3, column=1)
+        self.button = tk.Button(self.root, text="9", width=3, height=1)
+        self.button.grid(row=3, column=2)
+        self.button = tk.Button(self.root, text="4", width=3, height=1)
+        self.button.grid(row=4, column=0)
+        self.button = tk.Button(self.root, text="5", width=3, height=1)
+        self.button.grid(row=4, column=1)
+        self.button = tk.Button(self.root, text="6", width=3, height=1)
+        self.button.grid(row=4, column=2)
+        self.button = tk.Button(self.root, text="1", width=3, height=1)
+        self.button.grid(row=5, column=0)
+        self.button = tk.Button(self.root, text="2", width=3, height=1)
+        self.button.grid(row=5, column=1)
+        self.button = tk.Button(self.root, text="3", width=3, height=1)
+        self.button.grid(row=5, column=2)
+        self.button = tk.Button(self.root, text="+/-", width=3, height=1)
+        self.button.grid(row=6, column=0)
+        self.button = tk.Button(self.root, text="0", width=3, height=1)
+        self.button.grid(row=6, column=1)
+        self.button = tk.Button(self.root, text=".", width=3, height=1)
+        self.button.grid(row=6, column=2)
+        self.button = tk.Button(self.root, text="=", width=3, height=1)
+        self.button.grid(row=6, column=3)
+      
 
-     
-metext=Entry(me,font=("Courier New",12,'bold'),textvar=textin,width=25,bd=5,bg='powder blue')
-metext.pack()
 
-but1=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(1),text="1",font=("Courier New",16,'bold'))
-but1.place(x=10,y=100)
+        self.root.mainloop()
 
-but2=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(2),text="2",font=("Courier New",16,'bold'))
-but2.place(x=10,y=170)
+    def trigger_event(self, event):
+        print(event)
+        self.title = "Test"
+        self.root.title(self.title)
+        self.label_text.set("DIP 02")
+        self.label.pack()
 
-but3=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(3),text="3",font=("Courier New",16,'bold'))
-but3.place(x=10,y=240)
+    def trigger_my_cal(self, event):
+        print(event)
+        self.title = "My Calculator"
+        self.root.title(self.title)
+        self.label_text.set("DIP 01")
+        self.label.pack()
 
-but4=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(4),text="4",font=("Courier New",16,'bold'))
-but4.place(x=75,y=100)
 
-but5=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(5),text="5",font=("Courier New",16,'bold'))
-but5.place(x=75,y=170)
 
-but6=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(6),text="6",font=("Courier New",16,'bold'))
-but6.place(x=75,y=240)
-
-but7=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(7),text="7",font=("Courier New",16,'bold'))
-but7.place(x=140,y=100)
-
-but8=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(8),text="8",font=("Courier New",16,'bold'))
-but8.place(x=140,y=170)
-
-but9=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(9),text="9",font=("Courier New",16,'bold'))
-but9.place(x=140,y=240)
-
-but0=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(0),text="0",font=("Courier New",16,'bold'))
-but0.place(x=10,y=310)
-
-butdot=Button(me,padx=47,pady=14,bd=4,bg='white',command=lambda:clickbut("."),text=".",font=("Courier New",16,'bold'))
-butdot.place(x=75,y=310)
-
-butpl=Button(me,padx=14,pady=14,bd=4,bg='white',text="+",command=lambda:clickbut("+"),font=("Courier New",16,'bold'))
-butpl.place(x=205,y=100)
-
-butsub=Button(me,padx=14,pady=14,bd=4,bg='white',text="-",command=lambda:clickbut("-"),font=("Courier New",16,'bold'))
-butsub.place(x=205,y=170)
-
-butml=Button(me,padx=14,pady=14,bd=4,bg='white',text="*",command=lambda:clickbut("*"),font=("Courier New",16,'bold'))
-butml.place(x=205,y=240)
-
-butdiv=Button(me,padx=14,pady=14,bd=4,bg='white',text="/",command=lambda:clickbut("/"),font=("Courier New",16,'bold'))
-butdiv.place(x=205,y=310)
-
-butclear=Button(me,padx=14,pady=119,bd=4,bg='white',text="CE",command=clrbut,font=("Courier New",16,'bold'))
-butclear.place(x=270,y=100)
-
-butequal=Button(me,padx=151,pady=14,bd=4,bg='white',command=equlbut,text="=",font=("Courier New",16,'bold'))
-butequal.place(x=10,y=380)
-me.mainloop()
-
+MyCalculator()
