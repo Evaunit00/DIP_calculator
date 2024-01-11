@@ -20,6 +20,11 @@ def equalbut():
     operator = temp_op
     textin.set(temp_op)
 
+def percentbut():
+    global operator
+    temp = str(eval(operator+'/100'))
+    textin.set(temp)
+
 
 '''
 Display and  Buttons
