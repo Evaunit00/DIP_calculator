@@ -14,7 +14,11 @@ operator = ""
 '''
 Functions
 '''
-
+def equalbut():
+    global operator
+    temp_op = str(eval(operator))
+    operator = temp_op
+    textin.set(temp_op)
 
 
 '''
