@@ -14,6 +14,11 @@ operator = ""
 '''
 Functions
 '''
+def clickbut(number): #lambda:clickbut(1)
+     global operator
+     operator += str(number)
+     textin.set(operator)
+     
 def equalbut():
     global operator
     temp_op = str(eval(operator))
