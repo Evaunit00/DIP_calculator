@@ -18,6 +18,17 @@ def clickbut(number): #lambda:clickbut(1)
      global operator
      operator += str(number)
      textin.set(operator)
+
+def clearallbut():
+    global operator
+    operator = ""
+    textin.set("")
+
+def clearbut():
+    global operator
+    text = operator[:-1]
+    operator = text
+    textin.set(text)
      
 def equalbut():
     global operator
